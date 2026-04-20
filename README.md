@@ -7,16 +7,6 @@
 ![Platform](https://img.shields.io/badge/platform-Android-orange.svg)
 ![Language](https://img.shields.io/badge/language-Kotlin%20%2B%20C%2B%2B17-purple.svg)
 
----
-
-## Demo
-
-> _Add a screenshot here: drag an image into this section on GitHub._
-
-The app runs a suite of native security checks and returns a score from **0 (compromised) to 100 (clean)**. Each failed check deducts points, and the raw JSON result from the native layer is displayed alongside the score.
-
----
-
 ## How It Works
 
 ```
@@ -65,9 +55,9 @@ Score is clamped to the range `[0, 100]`.
 graph TD
     A[Jetpack Compose UI] -->|Button tap| B[NativeChecker.kt]
     B -->|JNI call| C[native-lib.cpp / C++17]
-    C -->|stat| D[Filesystem: /system/xbin/su]
+    C -->|stat| D["Filesystem: /system/xbin/su"]
     C -->|__system_property_get| E[System Properties]
-    C -->|read| F[/sys/fs/selinux/enforce]
+    C -->|read| F["/sys/fs/selinux/enforce"]
     C -->|JSON string| B
     B -->|parse + score| A
 ```
